@@ -45,22 +45,22 @@ function install_ssrpanel(){
 	yum install -y unzip zip git
 	#自动选择下载节点
 	GIT='raw.githubusercontent.com'
-	MY='gitee.com'
+	MY='coding.net'
 	GIT_PING=`ping -c 1 -w 1 $GIT|grep time=|awk '{print $7}'|sed "s/time=//"`
 	MY_PING=`ping -c 1 -w 1 $MY|grep time=|awk '{print $7}'|sed "s/time=//"`
 	echo "$GIT_PING $GIT" > ping.pl
 	echo "$MY_PING $MY" >> ping.pl
 	fileinfo=`sort -V ping.pl|sed -n '1p'|awk '{print $2}'`
 	if [ "$fileinfo" == "$GIT" ];then
-		fileinfo='https://raw.githubusercontent.com/marisn2017/ssrpanel/master/fileinfo.zip'
+		Download='https://raw.githubusercontent.com/marisn2017/ssrpanel/master'
 	else
-		fileinfo='https://gitee.com/marisn/ssrpanel_one_key/raw/master/fileinfo.zip'
+		Download='https://coding.net/u/marisn/p/ssrpanel/git/raw/master'
 	fi
 	rm -f ping.pl	
-	 wget -c --no-check-certificate https://raw.githubusercontent.com/marisn2017/ssrpanel/master/lnmp1.4.zip && unzip lnmp1.4.zip && rm -rf lnmp1.4.zip && cd lnmp1.4 && chmod +x install.sh && ./install.sh
+	wget -c --no-check-certificate "${Download}/lnmp1.5.zip" && unzip lnmp1.5.zip && rm -rf lnmp1.5.zip && cd lnmp1.5 && chmod +x install.sh && ./install.sh
 	clear
 	#安装fileinfo必须组件
-	cd /root && wget --no-check-certificate $fileinfo
+	cd /root && wget --no-check-certificate "${Download}/fileinfo.zip"
 	File="/root/fileinfo.zip"
     if [ ! -f "$File" ]; then  
     echo "fileinfo.zip download be fail,please check the /root/fileinfo.zip"
@@ -78,10 +78,11 @@ function install_ssrpanel(){
 	wget -c --no-check-certificate "https://github.com/ssrpanel/SSRPanel/archive/${ssrpanel_new_ver}.tar.gz"
 	tar zxvf "${ssrpanel_new_ver}.tar.gz" && cd SSRPanel-* && mv * .[^.]* ..&& cd /home/wwwroot/default && rm -rf "${ssrpanel_new_ver}.tar.gz"
 	#替换数据库配置
-	wget -N -P /home/wwwroot/default/config/ https://raw.githubusercontent.com/marisn2017/ssrpanel/master/app.php
-	wget -N -P /home/wwwroot/default/config/ https://raw.githubusercontent.com/marisn2017/ssrpanel/master/database.php
-	wget -N -P /usr/local/php/etc/ https://raw.githubusercontent.com/marisn2017/ssrpanel/master/php.ini
-	wget -N -P /usr/local/nginx/conf/ https://raw.githubusercontent.com/marisn2017/ssrpanel/master/nginx.conf
+	cp .env.example .env
+	wget -N -P /home/wwwroot/default/config/ "${Download}/app.php"
+	wget -N -P /home/wwwroot/default/config/ "${Download}/database.php"
+	wget -N -P /usr/local/php/etc/ "${Download}/php.ini"
+	wget -N -P /usr/local/nginx/conf/ "${Download}/nginx.conf"
 	service nginx restart
 	#设置数据库
 	#mysql -uroot -proot -e"create database ssrpanel;" 
