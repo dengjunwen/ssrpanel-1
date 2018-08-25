@@ -105,6 +105,7 @@ flush privileges;
 EOF
 	#安装依赖
 	cd /home/wwwroot/default/
+	php composer.phar update
 	php composer.phar install
 	php artisan key:generate
     chown -R www:www storage/
