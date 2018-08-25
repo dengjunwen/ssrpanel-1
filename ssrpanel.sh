@@ -73,8 +73,7 @@ function install_ssrpanel(){
 	else
     unzip fileinfo.zip
     fi
-	cd /root/fileinfo && /usr/local/php/bin/phpize && ./configure --with-php-config=/usr/local/php/bin/php-config --with-fileinfo && make && make install
-	cd /home/wwwroot/
+    cd /home/wwwroot/
 	cp -r default/phpmyadmin/ .  #复制数据库
 	cd default
 	rm -rf index.html
