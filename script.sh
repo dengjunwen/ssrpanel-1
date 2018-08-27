@@ -48,6 +48,7 @@ function check_system(){
 function install_ssrpanel(){
 	yum -y remove httpd
 	yum install -y unzip zip git
+	yum update nss curl iptables -y
 	#自动选择下载节点
 	GIT='raw.githubusercontent.com'
 	MY='coding.net'
