@@ -30,11 +30,8 @@
 一键脚本【仅支持Centos 7.x 64位系统】：<br>
 
 ```yum install screen wget -y &&screen -S ssrpanel```<br>
-```wget --no-check-certificate https://raw.githubusercontent.com/marisn2017/ssrpanel/master/ssrpanel.sh&&chmod +x ssrpanel.sh&&bash ssrpanel.sh```
+```wget --no-check-certificate https://raw.githubusercontent.com/marisn2017/ssrpanel/master/script.sh&&chmod +x script.sh&&bash script.sh```
 
-乱码请使用英文版脚本：<br>
-
-```wget --no-check-certificate https://raw.githubusercontent.com/marisn2017/ssrpanel/master/ssrpanel_en.sh&&chmod +x ssrpanel_en.sh&&bash ssrpanel_en.sh```<br>
 
 更多问题访问：<a href="https://blog.67cc.cn/">https://blog.67cc.cn/</a><br>
 
