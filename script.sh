@@ -107,14 +107,8 @@ EOF
 	cd /home/wwwroot/default/
 	php composer.phar install
 	php artisan key:generate
-    chown -R www:www storage/
-    chmod -R 777 storage/
-	chattr -i .user.ini
-	mv .user.ini public
-	chown -R root:root *
-	chmod -R 777 *
-	chown -R www:www storage
-	chattr +i public/.user.ini
+	chown -R www:www storage/
+	chmod -R 777 storage/
 	service nginx restart
     service php-fpm restart
 	#开启日志监控
