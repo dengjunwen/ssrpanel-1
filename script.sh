@@ -84,7 +84,7 @@ function install_ssrpanel(){
 	#tar zxvf "${ssrpanel_new_ver}.tar.gz" && cd SSRPanel-* && mv * .[^.]* ..&& cd /home/wwwroot/default && rm -rf "${ssrpanel_new_ver}.tar.gz"
 	git clone https://github.com/marisn2017/ssrpanel_resource.git tmp && mv tmp/.git . && rm -rf tmp && git reset --hard
 	#替换数据库配置
-	cp .env.example .env
+	#cp .env.example .env
 	wget -N -P /usr/local/php/etc/ "${Download}/php.ini"
 	wget -N -P /usr/local/nginx/conf/ "${Download}/nginx.conf"
 	service nginx restart
@@ -107,6 +107,7 @@ EOF
 	cd /home/wwwroot/default/
 	php composer.phar install
 	php artisan key:generate
+	cd /home/wwwroot/default/
 	chown -R www:www storage/
 	chmod -R 777 storage/
 	service nginx restart
@@ -123,8 +124,8 @@ EOF
 	lnmp restart
 	IPAddress=`wget http://members.3322.org/dyndns/getip -O - -q ; echo`;
 	echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-	echo "# A key to build success, go to http://${IPAddress}~               #"
-	echo "# One click Install ssrpanel successed                             #"
+	echo "# 一键安装已完成，请访问http://${IPAddress}查看~                   #"
+	echo "# 一键安装ssrpanel前端面板已完成                                   #"
 	echo "# Author: marisn          Ssrpanel:ssrpanel                        #"
 	echo "# Blog: http://blog.67cc.cn/                                       #"
 	echo "# Github: https://github.com/marisn2017/ssrpanel                   #"
