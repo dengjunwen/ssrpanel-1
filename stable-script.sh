@@ -201,6 +201,7 @@ function install_ssr(){
 	./configure && make -j2 && make install
 	echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf
 	ldconfig
+	cd /root && rm -rf libsodium*
 	yum -y install python-setuptools
 	easy_install supervisor
     cd /root
@@ -288,7 +289,7 @@ function install_RS(){
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 ulimit -c 0
-rm -rf ssrpanel*
+rm -rf stable-script*
 clear
 check_system
 sleep 2
